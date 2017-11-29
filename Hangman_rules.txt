@@ -1,0 +1,37 @@
+Hangman is a word guessing game. The word to guess is represented by a row of dashes, representing each letter of the word. If the guessing player (In this case your model) suggests a letter which occurs in the word, letter is revealed in all its correct positions. If the suggested letter does not occur in the word, then it is marked as a wrong attempt. The guesser can make at most 8 wrong attempts for predicting a given word.
+
+Files:
+
+    --> We will give a test set of words called as test.
+    --> Please use words from the file train only, for building your language model, estimating parameters and/or training.
+    --> Use of additional resources are not allowed for building your model, but you are allowed to use a subset of the training set if required.
+    --> It is mandatory that you will have to predict one character at a time for the task.
+
+Gameplay:
+
+The game should proceed as follows.
+
+The main function:
+
+        a.  The word to be guessed will be assigned to the variable "solution". The variable "maskedWord", will be initialised as a sequence of "_", where the number of "_" equals the the number of letters in "solution". An empty dictionary is also initialised with the name "guesses". Also initialise the integer "wrongGuess" to 0.
+        b.  The main function will obtain a predicted character from the function "model". Once a prediction is obtained, it will check for the following.
+                b.1.    If the character is present in the dictionary "gueses", then the function should ask the model for an another prediction. No penalty is incurred.
+                b.2.    Else, the character should be added to the dictionary "guesses"
+                        b.2.1   If the character is present in "solution", replace the "_" in maskedWord with the predicted character in all the corresponding positions where that character is present in "solution"
+                        b.2.2   else, increment the variable "wrongGuess" by 1.
+                b.3. the function should ask the model for an another prediction and repeat b again.
+        c.  Terminate the iteration of b, if any one of them happens (whichever happens first)
+                c.1.    If wrongGuess == 8. Return maskedWord and guesses
+                c.2.    if no "_" remains in maksedWord, Return maskedWord and guesses.
+
+The function "model", whenever invoked should be passed with the latest updated values of "maskedWord" and guesses. No other information can be used by model as the context to make the prediction. The model might be a supervised model or unsupervised model with or without parameter tuning based on the data from trainingSet.
+
+You should have a prediction and exactly one prediction for every entry in the test dataset. The worst case prediction you can have for a 5 letter word will be 5 underscores, i.e _____ . 
+
+The evaluation is performed using mean Levenstein distance between the entries in test dataset and your predictions. The baseline achieves a mean Levenstein distance of 0.85 . Your system should achieve a mean Levenstein distance of 0.85 or lesser to be qualified for grading.
+
+
+Ignore the Id column in the test dataset for the time being. You have to predict the data in the Prediction column using your model.
+
+
+THe format for submission will be updated in moodle soon
